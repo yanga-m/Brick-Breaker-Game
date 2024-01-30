@@ -7,9 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
 
-
 import javax.swing.*;
-
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
@@ -30,7 +28,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private MapGenerator map;
 
-
     public Gameplay() {
         map = new MapGenerator(3, 7);
         addKeyListener(this);
@@ -41,57 +38,53 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     public void paint(Graphics g) {
-        // background
-        g.setColor(Color.black);
+        
+        g.setColor(new Color(255, 182, 193)); 
         g.fillRect(1, 1, 692, 592);
-
-        // drawing map
+       
         map.draw((Graphics2D) g);
 
-        // borders
         g.setColor(Color.yellow);
         g.fillRect(0, 0, 3, 592);
         g.fillRect(0, 0, 692, 3);
         g.fillRect(691, 0, 3, 592);
 
-        //scores
         g.setColor(Color.white);
         g.setFont(new Font("serif", Font.BOLD, 25));
-        g.drawString(""+score, 590,30);
+        g.drawString("" + score, 590, 30);
 
-        // paddle
-        g.setColor(Color.green);
+        g.setColor(Color.black); 
         g.fillRect(playerX, 550, 100, 8);
 
-        // ball
         g.setColor(Color.yellow);
         g.fillOval(ballposX, ballposY, 20, 20);
 
-        if(totalBricks <= 0){
+        if (totalBricks <= 0) {
             play = false;
             ballXdir = 0;
             ballYdir = 0;
             g.setColor(Color.RED);
             g.setFont(new Font("serif", Font.BOLD, 30));
-            g.drawString("You Won! Score: "+score, 190, 300);
+            g.drawString("You Won! Score: " + score, 190, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 20));
-            g.drawString("Press Enter to Restart "+score, 230, 350);
+            g.drawString("Press Enter to Restart " + score, 230, 350);
         }
 
-        if(ballposY > 570){
+        if (ballposY > 570) {
             play = false;
             ballXdir = 0;
             ballYdir = 0;
             g.setColor(Color.RED);
             g.setFont(new Font("serif", Font.BOLD, 30));
-            g.drawString("Game Over, Score: "+score, 190, 300);
+            g.drawString("Game Over, Score: " + score, 190, 300);
 
             g.setFont(new Font("serif", Font.BOLD, 20));
-            g.drawString("Press Enter to Restart "+score, 230, 350);
+            g.drawString("Press Enter to Restart " + score, 230, 350);
         }
 
         g.dispose();
+    
     }
 
     @Override
